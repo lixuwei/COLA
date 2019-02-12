@@ -42,6 +42,7 @@ public class Bootstrap {
     }
 
     /**
+     * 把需要的目标Class类型的Bean 添加到各个Hub中 方便搜索和调用
      * @param classSet
      */
     private void registerBeans(Set<Class<?>> classSet) {

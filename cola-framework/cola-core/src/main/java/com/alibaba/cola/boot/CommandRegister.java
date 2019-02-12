@@ -38,10 +38,12 @@ public class CommandRegister implements RegisterI {
     @Override
     public void doRegistration(Class<?> targetClz) {
         Class<? extends Command> commandClz = getCommandFromExecutor(targetClz);
+        //加载的是一个原型socpe的bean 也就是每一个执行getBean()方法都会得到一个新的Bean对象 接着添加拦截器 放入key=commandCls的Map集合中
         CommandInvocation commandInvocation = ApplicationContextHelper.getBean(CommandInvocation.class);
         commandInvocation.setCommandExecutor((CommandExecutorI) ApplicationContextHelper.getBean(targetClz));
         commandInvocation.setPreInterceptors(collectInterceptors(commandClz, true));
         commandInvocation.setPostInterceptors(collectInterceptors(commandClz, false));
+        //都是CommandInvocation的Bean 但放心是原型的Bean
         commandHub.getCommandRepository().put(commandClz, commandInvocation);
     }
 
