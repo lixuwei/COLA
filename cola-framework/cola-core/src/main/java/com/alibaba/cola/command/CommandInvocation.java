@@ -14,7 +14,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-
+/**
+ * 这是一个关键的类 封装了请求链的逻辑 包含了 前拦截器 命令执行器 后拦截器
+ */
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CommandInvocation{
