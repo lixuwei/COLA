@@ -6,7 +6,7 @@
     <!-- https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot/src/main/resources/org/springframework/boot/logging/logback/defaults.xml -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
-    <property name="APP_NAME" value="${artifactId}" />
+    <property name="APP_NAME" value="${rootArtifactId}" />
     <property name="LOG_PATH" value="${symbol_dollar}{user.home}/${symbol_dollar}{APP_NAME}/logs" />
     <property name="LOG_FILE" value="${symbol_dollar}{LOG_PATH}/application.log" />
 

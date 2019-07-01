@@ -43,8 +43,24 @@ com
 该Module主要是提供一些开发测试的工具，可以使用TDD来进行开发。
 
 ## cola-archetype Project
-该Project下面是Archetype的源码，先执行`mvn install`，然后就可以用下面的命令来创建新应用：
+为了提升应用创建的效率，以及保证架构风格和规范被准守。我们开发了创建应用的Maven Archetype，这样只要执行一行命令就可以生成一个基于COLA框架的应用骨架来。
+
+可以按照以下步骤使用COLA Archetype：
+
+1. 下载Archetype
+
+2. 安装Archetype到本地：运行 mvn install
+
+3. 生成应用，比如，要生成一个名为demo应用，只要执行下面的maven 命令：
 ```
 mvn archetype:generate  -DgroupId=com.alibaba.sample -DartifactId=demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.alibaba.sample -DarchetypeArtifactId=cola-framework-archetype -DarchetypeGroupId=com.alibaba.cola -DarchetypeVersion=1.0.0-SNAPSHOT
 ```
-生成的应用主要包括demo-app, demo-domain, demo-infrastructure, demo-client和Start五个Module，分别代表不同层次（layer）和用途。
+
+4. 启动SpringBoot，首先在demo目录下运行mvn install（如果不想运行测试，可以加上-DskipTests参数）。然后进入start目录，执行mvn spring-boot:run。
+运行成功的话，可以看到SpringBoot启动成功的界面
+
+5. 执行测试，生成的应用中，已经实现了一个简单的Rest请求，可以在浏览器中输入 http://localhost:8080/customer?name=World 进行测试。
+
+6. 请求执行成功的话，可以在浏览器中的返回值中看到："customerName":"Hello, World"。同时观察启动SpringBoot的控制台，可以看到LoggerInterceptor打印出来的日志。
+
+查看生成的demo应用，我们可以看到生成了5个module，分别是demo-controller、demo-client、demo-app、demo-domain、demo-infrastructure。其中demo-client是用来存放RPC调用中的DTO（Data Transfer Object）类，其它四个module分别对应控制层、应用层、领域层和基础实施层。
